@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MessageMapper">
+	<insert id="addMessage" >
+		insert into messages(mid,author,title,content,email,add_date) values(pk.nextval,#{author},#{title},#{content},#{email},sysdate)
+	</insert>
+	<select id="findMessage" parameterType="int" resultType="com.message.Message">
+		select * from messages 
+		<where>
+			<if test="author != null">
+				author like '%${author}%'
+			</if>
+			<if test="email != null">
+				or email like '%${email}%'
+			</if>
+			<if test="content != null">
+				or content like '%${content}%'
+			</if>
+		</where>
+	</select>
+	
+	<resultMap type="com.user.User" id="resultUser">
+		<id column="id" property="id"></id>
+		<result column="password" property="password"></result>
+		<result column="flag" property="flag"></result>
+		<collection property="messages" ofType="com.message.Message">
+			<id column="mid" property="mid"></id>
+			<result column="author" property="author"></result>
+			<result column="title" property="title"></result>
+			<result column="content" property="content"></result>
+			<result column="email" property="email"></result>
+			<result column="add_date" property="add_date"></result>
+		</collection>
+	</resultMap>
+	
+	<resultMap type="com.message.Message" id="resultMessage">
+	
+			<id column="mid" property="mid"></id>
+			<result column="author" property="author"></result>
+			<result column="title" property="title"></result>
+			<result column="content" property="content"></result>
+			<result column="email" property="email"></result>
+			<result column="add_date" property="add_date"></result>
+			<result column="user_id" property="user_id"></result>
+		<association property="user" javaType="com.user.User">
+			<id column="id" property="id"></id>
+			<result column="password" property="password"></result>
+			<result column="flag" property="flag"></result>
+		</association>
+	</resultMap>
+	
+	<select id="findAllMessage" resultMap="resultMessage">
+		select * from messages m join muser u on m.user_id = u.id order by m.add_date
+	</select>
+	
+	<select id="findAUser" resultMap="resultUser">
+		select * from messages m full outer join muser u on m.user_id = u.id where u.id=#{id} and u.password = #{password} 
+	</select>
+	
+	
+	<update id="updateMessage">
+		update messages set author=#{author},title=#{title},content=#{content},email=#{email},add_date=sysdate where mid=#{mid}
+	</update>
+	
+	<delete id="deleteMessage">
+		delete from messages where mid=#{mid}
+	</delete>
+</mapper>

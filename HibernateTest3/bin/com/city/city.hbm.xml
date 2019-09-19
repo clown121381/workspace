@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE hibernate-mapping PUBLIC
+           "-//Hibernate/hibernate-Mapping DTD 3.0//EN"
+           "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false" package="com.city">    <!-- 导入包 -->
+    <class name="CityTest" table="city"> <!-- 表名 -->
+        <id name="c_id" type="int"></id> 
+        <property name="loc_id" type="int"/>
+        <property name="c_name" type="string"/>
+        <property name="peo_count" type="int"/>   
+    </class>   
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/webdemo04/Totalservlet" method="get">
+	姓名：<input type="text" name="name"><br>
+	密码：<input type="password" name="password"><br>
+	
+	抽烟：<input type="radio" name="hobby" value="1">
+	喝酒：<input type="radio" name="hobby" value="2">
+	汤头：<input type="radio" name="hobby" value="3">
+	<br>
+	抽烟：<input type="checkbox" name="hobbys" value="1">
+	喝酒：<input type="checkbox" name="hobbys" value="2">
+	汤头：<input type="checkbox" name="hobbys" value="3">
+	<br>
+	<select name="hobby1" >
+		<option value="smoke">smoke</option>
+		<option value="drink">drink</option>
+		<option value="head">head</option>	
+	</select>
+	<br>
+	<select name="hobby2" multiple="multiple">
+		<option value="smoke">smoke</option>
+		<option value="drink">drink</option>
+		<option value="head">head</option>	
+	</select>
+	
+	<textarea name="text" rows="10" cols="10">input</textarea>
+	<input type="submit" value="提交">
+	<input type="button" value="button">
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE hibernate-mapping PUBLIC
+           "-//Hibernate/hibernate-Mapping DTD 3.0//EN"
+           "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false" package="com.stu">    <!-- 导入包 -->
+    <class name="Student" table="Table_Stu"> <!-- 表名 -->
+        <id name="stu_id">    <!-- 主键 -->                        
+        </id>
+        <!-- 对应的各个字段名 -->
+        <property name="stu_name"/>
+        <property name="stu_age"/>
+    
+    </class>   
+</hibernate-mapping>

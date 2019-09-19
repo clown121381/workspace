@@ -1,0 +1,26 @@
+<hibernate-mapping>
+    <class name="com.Hibernate.ManyToMany.Student" table="t_student" lazy="false">
+        <!--一,主键属性  -->
+        <id name="sid" column="sid">
+<!-- 			<generator class="native"> -->
+<!-- 				<param name="sequence_name">pk</param> -->
+<!-- 			</generator> -->
+        </id>
+        <!-- 二,其它属性 -->
+        <property name="sname" column="sname"/>
+    
+        <!-- 三,表示和课程的关系 -->
+        <!--3.1 set标签的name属性:当前类中集合的名字 
+                table:第三方表名
+             -->
+        <set name="courses" table="s_c_tab" inverse="false">
+            <!--3.2 key的 column表示当前类在中间表中的外键 -->
+            <key column="sid" />
+                <!--3.3 many-to-many表示多对多关系
+                    column:表示另一方在中间表中的外键
+                    class:表示另一方类的全限定名
+              	-->
+            <many-to-many column="cid" class="com.Hibernate.ManyToMany.Course" ></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.element">
+    <!-- JavaBean与对应的表名 -->
+    <class name="Student" table="STUDENT_TEST">
+       
+        <!-- 字段 -->
+        <property name="sname" type="string">
+            <column name="NAME" />
+        </property>
+        <!-- 字段 -->
+        <property name="sid" type="int">
+            <column name="ID" />
+        </property>
+        <!-- 字段 -->
+        <property name="sage" type="int">
+            <column name="AGE" />
+        </property>
+    </class>
+</hibernate-mapping>

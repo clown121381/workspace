@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MessageMapper">
+	<insert id="addMessage" >
+		insert into message(mid,author,title,content,email,add_date) values(pk.nextval,#{author},#{title},#{content},#{email},sysdate)
+	</insert>
+	<select id="findMessage" parameterType="int" resultType="com.message.Message">
+		select * from message 
+		<where>
+			<if test="author != null">
+				author like '%${author}%'
+			</if>
+			<if test="email != null">
+				or email like '%${email}%'
+			</if>
+			<if test="content != null">
+				or content like '%${content}%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAllMessage" resultType="com.message.Message">
+		select * from message order by add_date
+	</select>
+	
+	<update id="updateMessage">
+		update message set author=#{author},title=#{title},content=#{content},email=#{email},add_date=sysdate where mid=#{mid}
+	</update>
+	
+	<delete id="deleteMessage">
+		delete from message where mid=#{mid}
+	</delete>
+</mapper>

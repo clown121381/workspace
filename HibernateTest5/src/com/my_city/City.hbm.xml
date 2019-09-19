@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.my_city.City" table="my_city">
+        <id name="c_id" column="c_id">
+            <generator class="native" >
+            	<param name="sequence_name">city_seq</param>
+            </generator>
+        </id>
+        <property name="c_name" column="c_name" />
+        <many-to-one name="loc" class="com.my_location.Location" cascade="save-update,persist" column="loc_id" lazy="false"></many-to-one>
+    </class>
+</hibernate-mapping>

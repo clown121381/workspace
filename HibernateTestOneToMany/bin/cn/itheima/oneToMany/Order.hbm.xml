@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.itheima.oneToMany.Order" table="t_order">
+        <id name="id" column="c_id">
+            <generator class="native" />
+        </id>
+        <property name="money" column="c_money" />
+        <property name="receiverInfo" column="c_receiverInfo" length="50" />
+        <!-- 多对一 -->
+        <!-- 
+            name属性它描述的是Order类中的一的一方的属性名称：Customer c;
+            class属性代表的是一的一方的类型
+            column属性描述的是一对多，在多的一方产生的外键的名称：c_customer_id
+        -->
+        <many-to-one name="c" class="cn.itheima.oneToMany.Customer" column="c_customer_id" ></many-to-one>
+    </class>
+</hibernate-mapping>

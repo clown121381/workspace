@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sql.sqlMapper">
+    <select id="getStu" parameterType="hashmap" resultType="com.student.Student">
+        select * from STU where id=#{id} and age=#{age}
+    </select>
+    
+    <insert id="addStu" parameterType="com.student.Student">
+        insert into STU(id,name,age) values(#{id},#{name},#{age})
+    </insert>
+    
+    <delete id="deleteStu" parameterType="int">
+        delete from STU where id=#{id}
+    </delete>
+    
+    <update id="updateStu" parameterType="com.student.Student">
+        update STU set name=#{name},age=#{age} where id=#{id}
+    </update>
+    
+    <select id="getAllStus" resultType="com.student.Student">
+        select * from STU
+    </select>   
+</mapper>

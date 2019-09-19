@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="man" class="com.spring.bean.Man">
+		<property name="name" value="zhansan"></property>
+		<property name="age" value="18"></property>
+	</bean>
+	
+	<bean id="con_man" class="com.spring.bean.Man">
+		<constructor-arg value="小明" index="0"></constructor-arg>
+		<constructor-arg value="13" index="1"></constructor-arg>
+	</bean>
+	
+	<bean id="woman" class="com.spring.bean.Woman">
+		<property name="name" value="小红"></property>
+		<property name="age" value="14"></property>
+	</bean>
+	
+	<bean id="p1" class="com.spring.bean.Customer">
+		<property name="person">
+			<bean class="com.spring.bean.Man">
+				<property name="name" value="customer1"></property>
+				<property name="age" value="18"></property>
+			</bean>
+		</property>
+		
+		<property name="order">
+			<list>
+				<value>java</value>
+				<value>c</value>
+				<value>c++</value>
+				<value>python</value>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="auto_man" class="com.spring.bean.Customer" autowire="byName"></bean>
+</beans>

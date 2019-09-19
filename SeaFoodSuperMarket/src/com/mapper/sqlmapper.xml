@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.mapper">
+	
+	<insert id="insertIntoBill" >
+		insert into table_bill (bill_id,vendor_id,bill_date,bill_due_date,bill_paid_flag,bill_amount) values(bill_seq.nextval,#{vendor_id},to_date(#{d1},'YYYY-MM-DD'),to_date(#{d2},'YYYY-MM-DD'),0,#{sum})
+	</insert>
+	
+	<select id="selectAllVendor" resultType="com.bean.Table_Vendor">
+		select vendor_id,vendor_name,vendor_address,vendor_phone,vendor_fax,vendor_contact_person from table_vendor
+	</select>
+	
+	<insert id="insertVendor">
+		insert into table_vendor(vendor_id,vendor_name,vendor_address,vendor_phone,vendor_fax,vendor_contact_person) values(vendor_seq.nextval,#{name},#{address},#{phone},#{fax},#{person})
+	</insert>
+	<update id="updateVendor">
+		update table_vendor set vendor_name=#{name},vendor_address=#{address},vendor_phone=#{phone},vendor_fax=#{fax},vendor_contact_person=#{person} where vendor_id = #{id}
+	</update>
+	<select id="selectVendorById" resultType="com.bean.Table_Vendor">
+		select vendor_id,vendor_name,vendor_address,vendor_phone,vendor_phone,vendor_fax,vendor_contact_person from table_vendor where vendor_id=#{vendor_id}
+	</select>
+	
+	<select id="selectAllDept" resultType="com.bean.Table_Dept">
+		select dept_id,dept_name,dept_description from table_dept
+	</select>
+	
+	<update id="updateDept">
+		update table_dept set  dept_name=#{name },dept_description=#{desc} where dept_id=#{id}
+	</update>
+	
+	<select id="selectADept" resultType="com.bean.Table_Dept">
+		select dept_id,dept_name,dept_description from table_dept where dept_id = #{id}
+	</select>
+	
+	<insert id="insertIntoBillItem">
+		insert into table_bill_item(bill_id,dept_id,bill_item_id,bill_item_expense) values(#{ bill_id},#{dept_id},bill_item_seq.nextval,#{sum})
+	</insert>
+	
+	<insert id="insertDept">
+		insert into table_dept(dept_id,dept_name,dept_description) values(dept_seq.nextval,#{name},#{desc})
+	</insert>
+	
+	<select id="selectBillId" resultType="String">
+		select bill_id from table_bill where vendor_id = #{vendor} and bill_amount=#{sum} and to_char(bill_date,'YYYY-MM-DD')=#{d1} and to_char(bill_due_date,'YYYY-MM-DD')=#{d2}
+	</select>
+	
+	<select id="selectVendorByName" resultType="com.bean.Table_Vendor">
+		select vendor_id,vendor_name,vendor_address,vendor_phone,vendor_phone,vendor_fax,vendor_contact_person from table_vendor where vendor_name = #{vendor_name}
+	</select>
+	
+	<select id="selectBillByVendorId" parameterType="int" resultType="com.bean.Table_bill">
+		select bill_id,vendor_id,bill_date,bill_due_date,bill_paid_flag,bill_amount from table_bill where vendor_id = #{vendor_id} and bill_paid_flag = 0
+	</select>
+	
+	<update id="UpdatePaidFlag">
+		update table_bill set bill_paid_flag = 1 where bill_id=#{bill_id}
+	</update>
+	
+	<select id="selectSysIncome" resultType="com.bean.Table_Income">
+		select * from table_income where to_char(business_date,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD')
+	</select>
+	
+	<select id="selectIncomeById" resultType="com.bean.Table_Income">
+		select * from table_income where income_id=#{id}
+	</select>
+	
+	<update id="updateDailyIncome">
+		update table_income set daily_income=#{income},lst_mod_timestemp=sysdate where income_id=#{id}
+	</update>
+	
+	<insert id="insertIncome">
+		insert into table_income values(in_seq.nextval,#{deptid},#{dailyincome},sysdate,sysdate)
+	</insert>
+</mapper>

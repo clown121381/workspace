@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 注意包名。不写的话下面要写全限定名 -->
+<hibernate-mapping    package="com.stu">
+    <!-- 类名对应表名 -->
+    <class name="Student" table="STUDENT">
+        <!-- 主键使用id标签。然后对应属性名与列名 -->
+        <id name="student_id" type="int" column="student_id">
+            <!-- 自增长主键不同数据库有不同类型的自增长类型，有需要可以百度到答案的 -->
+                <generator class="native">
+               	<param name="sequence_name">pk</param>
+                </generator>
+        </id>
+        <!-- 非主键映射关系，注意类型并不是单纯的java类型也不是数据库类型，而是一种中间类型，注意大小写特别是String在这里开头要小写 -->
+        <property name="student_name" type="string" column="student_name"></property>
+        <property name="student_age" type="int" column="student_age"></property>
+    </class>
+</hibernate-mapping>

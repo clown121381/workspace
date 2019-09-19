@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>			
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">			
+<mapper namespace="com.mapper.StarMapper">			
+	<insert id="insertStar" parameterType="com.star.Star">
+		insert into stars(starid,sname,age,salary) values(#{starid},#{sname},#{age},#{salary})
+	</insert>
+	
+	<select id="selectById" parameterType="int" resultType="com.star.Star">
+		select * from stars where starid=#{starid}
+	</select>
+	
+	<select id="selectBySalary" parameterType="hashmap" resultType="com.star.Star">
+		select * from stars where salary between #{salary1} and #{salary2}
+	</select>	
+	
+	<select id="selectByMaxSalary" resultType="com.star.Star">
+		select * from stars where salary = (select max(salary) from stars)
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		select count(*) from stars
+	</select>
+</mapper>			

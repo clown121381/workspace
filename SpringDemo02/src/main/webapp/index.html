@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+<button id="get">GET</button><br>
+<button id="post">POST</button><br>
+<button id="put">PUT</button><br>
+<button id="delete">DELETE</button><br>
+
+<script>
+    $("#get").click(function () {
+        $.ajax({
+            url:'/SpringDemo02/User.do',
+            method:'GET'
+        });
+    });
+    $("#post").click(function () {
+        $.ajax({
+            url:'/SpringDemo02/User.do',
+            method:'POST'
+        });
+    });
+    $("#put").click(function () {
+        $.ajax({
+            url:'/SpringDemo02/User.do',
+            method:'PUT'
+        });
+    });
+    $("#delete").click(function () {
+        $.ajax({
+            url:'/SpringDemo02/User.do',
+            method:'DELETE'
+        });
+    });
+</script>
+</body>
+</html>
